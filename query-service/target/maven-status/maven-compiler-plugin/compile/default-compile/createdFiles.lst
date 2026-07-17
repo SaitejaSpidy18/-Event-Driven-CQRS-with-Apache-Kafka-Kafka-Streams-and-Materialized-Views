@@ -1,0 +1,3 @@
+com\example\query\controller\AnalyticsController.class
+com\example\query\QueryServiceApplication.class
+com\example\query\streams\TopologyProvider.class

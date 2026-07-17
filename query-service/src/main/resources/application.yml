@@ -1,0 +1,29 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    streams:
+      application-id: ${KAFKA_STREAMS_APP_ID:ecommerce-analytics-query}
+      properties:
+        processing.guarantee: exactly_once_v2
+        application.server: ${KAFKA_STREAMS_HOST:localhost}:${KAFKA_STREAMS_PORT:8081}
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+app:
+  topics:
+    product-events: ${PRODUCT_EVENTS_TOPIC:product-events}
+    order-events: ${ORDER_EVENTS_TOPIC:order-events}
+    enriched-order-events: ${ENRICHED_ORDER_EVENTS_TOPIC:enriched-order-events}
+  stores:
+    product-sales: ${PRODUCT_SALES_STORE:product-sales-store}
+    category-revenue: ${CATEGORY_REVENUE_STORE:category-revenue-store}
+    hourly-sales: ${HOURLY_SALES_STORE:hourly-sales-store}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,15 @@
+com\example\command\dto\OrderItemRequest.class
+com\example\command\controller\OrderController.class
+com\example\command\dto\UpdateOrderStatusRequest.class
+com\example\command\service\OrderService$OrderStatusPayload.class
+com\example\command\entity\Order.class
+com\example\command\service\OrderService.class
+com\example\command\entity\Product.class
+com\example\command\service\ProductService.class
+com\example\command\repository\ProductRepository.class
+com\example\command\repository\OrderRepository.class
+com\example\command\dto\CreateOrderRequest.class
+com\example\command\event\EventEnvelope.class
+com\example\command\controller\ProductController.class
+com\example\command\dto\CreateProductRequest.class
+com\example\command\CommandServiceApplication.class

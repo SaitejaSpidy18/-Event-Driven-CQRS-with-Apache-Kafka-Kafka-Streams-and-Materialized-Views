@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">command-service</a> &gt; <a href="index.source.html" class="el_package">com.example.command.service</a> &gt; <span class="el_source">ProductService.java</span></div><h1>ProductService.java</h1><pre class="source lang-java linenums">package com.example.command.service;
+
+import com.example.command.dto.CreateProductRequest;
+import com.example.command.entity.Product;
+import com.example.command.event.EventEnvelope;
+import com.example.command.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class ProductService {
+
+    private final ProductRepository productRepository;
+    private final KafkaTemplate&lt;String, Object&gt; kafkaTemplate;
+    private final String productTopic;
+
+    public ProductService(ProductRepository productRepository,
+                          KafkaTemplate&lt;String, Object&gt; kafkaTemplate,
+<span class="nc" id="L21">                          @Value(&quot;${app.topics.product-events}&quot;) String productTopic) {</span>
+<span class="nc" id="L22">        this.productRepository = productRepository;</span>
+<span class="nc" id="L23">        this.kafkaTemplate = kafkaTemplate;</span>
+<span class="nc" id="L24">        this.productTopic = productTopic;</span>
+<span class="nc" id="L25">    }</span>
+
+    @Transactional
+    public Product create(CreateProductRequest request) {
+<span class="nc" id="L29">        Product product = new Product();</span>
+<span class="nc" id="L30">        product.setName(request.name());</span>
+<span class="nc" id="L31">        product.setCategory(request.category());</span>
+<span class="nc" id="L32">        product.setPrice(request.price());</span>
+
+<span class="nc" id="L34">        Product saved = productRepository.save(product);</span>
+<span class="nc" id="L35">        kafkaTemplate.send(productTopic, saved.getId().toString(), new EventEnvelope&lt;&gt;(&quot;ProductCreated&quot;, saved));</span>
+<span class="nc" id="L36">        return saved;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

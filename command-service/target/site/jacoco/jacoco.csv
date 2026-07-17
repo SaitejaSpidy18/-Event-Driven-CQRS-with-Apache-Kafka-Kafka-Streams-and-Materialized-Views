@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+command-service,com.example.command.dto,CreateOrderRequest,9,0,0,0,1,0,1,0,1,0
+command-service,com.example.command.dto,OrderItemRequest,12,0,0,0,1,0,1,0,1,0
+command-service,com.example.command.dto,CreateProductRequest,12,0,0,0,1,0,1,0,1,0
+command-service,com.example.command.dto,UpdateOrderStatusRequest,6,0,0,0,1,0,1,0,1,0
+command-service,com.example.command.service,OrderService,111,0,0,0,23,0,5,0,5,0
+command-service,com.example.command.service,ProductService,50,0,0,0,12,0,2,0,2,0
+command-service,com.example.command.service,OrderService.OrderStatusPayload,9,0,0,0,1,0,1,0,1,0
+command-service,com.example.command.event,EventEnvelope,67,0,0,0,18,0,12,0,12,0
+command-service,com.example.command.entity,Order,34,0,0,0,10,0,10,0,10,0
+command-service,com.example.command.entity,Product,34,0,0,0,10,0,10,0,10,0
+command-service,com.example.command.controller,ProductController,11,0,0,0,4,0,2,0,2,0
+command-service,com.example.command.controller,OrderController,17,0,0,0,5,0,3,0,3,0
+command-service,com.example.command,CommandServiceApplication,8,0,0,0,3,0,2,0,2,0
